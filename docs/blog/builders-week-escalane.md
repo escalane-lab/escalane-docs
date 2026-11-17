@@ -12,7 +12,7 @@ PASTE TO DEV: use docs/blog/devto-paste-ready.md (clean body, no checklist).
 ASSETS:
   - docs/blog/assets/escalane-dev-cover.jpg  (cover)
   - docs/blog/assets/escalane-flow-cover.svg (alt cover / diagram)
-  - Pages demo: https://escalane-lab.github.io/escalane-docs/demo/demo-decide-terminal.png
+  - Pages demo: https://escalane-lab.github.io/escalane-docs/demo/demo-decide-live-terminal.png
 YOU STILL DO: open draft edit_url, upload cover in DEV UI, publish only after explicit yes.
 -->
 
@@ -75,7 +75,7 @@ uv run escalane decide \
 
 Trimmed output from that exact live command on the seed PHP 502 incident:
 
-![escalane decide live Ollama d3:4b A3 terminal](https://escalane-lab.github.io/escalane-docs/demo/demo-decide-terminal.png)
+![escalane decide live Ollama d3:4b A3 terminal](https://escalane-lab.github.io/escalane-docs/demo/demo-decide-live-terminal.png)
 
 ```json
 {
@@ -138,7 +138,7 @@ If you are also fighting “LLM with bash privileges,” I would love to hear ho
 - [x] DevRelay 0.1.27 installed (`~/.devrelay/bin/devrelay`)
 - [x] Paste-ready body: [`devto-paste-ready.md`](devto-paste-ready.md)
 - [x] Live demo JSON summary: [`assets/demo-decide-live-summary.json`](assets/demo-decide-live-summary.json) (Ollama `d3:4b`)
-- [x] Terminal demo on Pages: https://escalane-lab.github.io/escalane-docs/demo/demo-decide-terminal.png
+- [x] Terminal demo on Pages: https://escalane-lab.github.io/escalane-docs/demo/demo-decide-live-terminal.png
 - [x] Cover image: [`assets/escalane-dev-cover.jpg`](assets/escalane-dev-cover.jpg)
 - [x] SVG alt cover: [`assets/escalane-flow-cover.svg`](assets/escalane-flow-cover.svg)
 - [x] Draft staged via DevRelay (`id` 5059414) with docs URL + demo PNG

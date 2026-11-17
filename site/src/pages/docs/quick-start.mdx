@@ -14,13 +14,11 @@ uv run pytest -q                 # offline unit + integration
 uv run escalane --help
 ```
 
-## Demo output
+## Demo output (live)
 
-Mock decide on the seed PHP 502 incident (gate A3 → HITL on label precision; dry-run only):
+Live Ollama `d3:4b` decide on the seed PHP 502 incident (`--require-live`, gate A3 → HITL on label precision; dry-run only):
 
-![escalane decide mock A3 terminal output](/escalane-docs/demo/demo-decide-terminal.png)
-
-
+![escalane decide live Ollama d3:4b A3 terminal output](/escalane-docs/demo/demo-decide-live-terminal.png)
 
 ## Mock decide (offline)
 
@@ -61,13 +59,18 @@ Expect: `docker restart jellyfin`.
 ```bash
 uv run escalane decide \
   --backend ollama \
-  --model d3:2b \
+  --model d3:4b \
+  --require-live \
   --state src/escalane/examples/incidents/php_502.json \
   --catalog datasets/sysops_decide/catalog.yaml \
   --gate-config A3
 ```
 
-Env overrides: `SYSONE_BACKEND`, `SYSONE_BASE_URL`, `SYSONE_MODEL`.
+Published demo used **`d3:4b`**; the code default / Phase-0 seed pin remains **`d3:2b`** when `--model` is omitted.
+
+Env overrides: `ESCALANE_BACKEND`, `ESCALANE_BASE_URL`, `ESCALANE_MODEL` (legacy `SYSONE_*` still accepted as fallback).
+
+`--require-live` fails closed if the live backend is unreachable (no silent mock fallback).
 
 ## Writes
 

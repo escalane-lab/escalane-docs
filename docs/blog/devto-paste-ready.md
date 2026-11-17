@@ -57,7 +57,7 @@ uv run escalane decide \
 
 Trimmed output from that exact live command on the seed PHP 502 incident:
 
-![escalane decide live Ollama d3:4b A3 terminal](https://escalane-lab.github.io/escalane-docs/demo/demo-decide-terminal.png)
+![escalane decide live Ollama d3:4b A3 terminal](https://escalane-lab.github.io/escalane-docs/demo/demo-decide-live-terminal.png)
 
 ```json
 {
