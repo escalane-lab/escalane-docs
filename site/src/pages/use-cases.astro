@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const cases = [
+	{
+		title: 'Alert → remediation',
+		market: 'SRE / platform',
+		body: 'Webhook hydrates state; Escalane picks a playbook; dry-run or HITL before mutate. False-permit is the KPI, not demo flash.',
+	},
+	{
+		title: 'MCP tool for agents',
+		market: 'Agent platforms',
+		body: 'One high-level tool (request action + evidence id). Agents never get raw bash. Harness re-fetches facts and returns gate + argv plan.',
+	},
+	{
+		title: 'IDP / portal runbooks',
+		market: 'Developer platforms',
+		body: 'Backstage-style “restart my service” buttons backed by a catalog, not wiki copy-paste. UI shows decision, noul, blast, then act.',
+	},
+	{
+		title: 'Databricks DataOps',
+		market: 'Data platforms',
+		body: 'jobs run-now, cluster restart, warehouse start from CLI templates — with backfill / schema-migrate locks that force escalate.',
+	},
+	{
+		title: 'Homelab fleet',
+		market: 'Prosumer / MSP',
+		body: 'Docker, Compose, Caddy, Pi-hole, Samba packs on local Ollama. SSH reload with lockout risk escalates instead of hoping the model notices.',
+	},
+];
+---
+
+<BaseLayout title="Use cases" description="Where Escalane fits in a larger system.">
+	<section class="page">
+		<h1>Use cases</h1>
+		<p class="lede">
+			Same contract everywhere: <code>Escalane = Decide + Act</code> — structured state in, catalog decision
+			out, harness-owned side effects. Drop-in where teams today reach for an agent (LLM + tools).
+		</p>
+		<ul class="list">
+			{
+				cases.map((c) => (
+					<li>
+						<p class="market">{c.market}</p>
+						<h2>{c.title}</h2>
+						<p>{c.body}</p>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+</BaseLayout>
+
+<style>
+	.page {
+		max-width: var(--max);
+		margin: 0 auto;
+		padding: 2rem 1.25rem 3rem;
+	}
+
+	h1 {
+		font-family: var(--font-display);
+		font-weight: 700;
+		font-size: clamp(1.85rem, 4vw, 2.5rem);
+		letter-spacing: -0.03em;
+		margin: 0 0 0.75rem;
+		animation: rise 0.6s var(--ease) both;
+	}
+
+	.lede {
+		max-width: 42rem;
+		color: var(--ink-muted);
+		margin: 0 0 2.5rem;
+	}
+
+	.lede code {
+		font-size: 0.9em;
+		color: var(--accent);
+	}
+
+	.list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: grid;
+		gap: 0;
+	}
+
+	.list li {
+		padding: 1.5rem 0;
+		border-top: 1px solid var(--line);
+	}
+
+	.market {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		color: var(--accent-dim);
+		margin: 0 0 0.35rem;
+	}
+
+	.list h2 {
+		font-family: var(--font-display);
+		font-size: 1.25rem;
+		font-weight: 600;
+		margin: 0 0 0.5rem;
+	}
+
+	.list p:last-child {
+		margin: 0;
+		color: var(--ink-muted);
+		max-width: 40rem;
+	}
+</style>

@@ -1,0 +1,66 @@
+---
+layout: ../../layouts/DocsLayout.astro
+title: Quick start
+description: Install escalane and run a dry-run decide loop.
+---
+
+# Quick start
+
+Requires Python **≥3.11**. From the repository root:
+
+```bash
+uv sync
+uv run pytest -q                 # offline unit + integration
+uv run escalane --help
+```
+
+## Mock decide (offline)
+
+```bash
+uv run escalane decide \
+  --backend mock \
+  --state src/escalane/examples/incidents/php_502.json \
+  --catalog datasets/sysops_decide/catalog.yaml \
+  --gate-config A3
+```
+
+## Dry-run execute
+
+```bash
+uv run escalane run --dry-run \
+  --backend mock \
+  --state src/escalane/examples/incidents/php_502.json \
+  --catalog datasets/sysops_decide/catalog.yaml \
+  --gate-config A0
+```
+
+Dry-run renders argv from the catalog (e.g. `systemctl restart php8.2-fpm`) with `side_effect_called=false`.
+
+## Homelab example
+
+```bash
+uv run escalane run --dry-run \
+  --backend mock \
+  --state src/escalane/examples/incidents/homelab_jellyfin_unhealthy.json \
+  --catalog datasets/homelab_decide/catalog.yaml \
+  --gate-config A0
+```
+
+Expect: `docker restart jellyfin`.
+
+## Optional live System One (Ollama)
+
+```bash
+uv run escalane decide \
+  --backend ollama \
+  --model d3:2b \
+  --state src/escalane/examples/incidents/php_502.json \
+  --catalog datasets/sysops_decide/catalog.yaml \
+  --gate-config A3
+```
+
+Env overrides: `SYSONE_BACKEND`, `SYSONE_BASE_URL`, `SYSONE_MODEL`.
+
+## Writes
+
+Real host mutation requires **both** `--allow-writes` and `ALLOW_WRITE_OPERATIONS=true`. The research default refuses live remediations without an injected test hook — keep dry-run until you intend otherwise.

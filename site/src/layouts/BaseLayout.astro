@@ -1,0 +1,67 @@
+---
+import Nav from '../components/Nav.astro';
+import { brand, categoryLine, formula, formulaAgent, tagline } from '../config';
+import '../styles/global.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { title = brand, description = tagline } = Astro.props;
+const fullTitle = title === brand ? `${brand} — ${tagline}` : `${title} · ${brand}`;
+const base = import.meta.env.BASE_URL;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content={description} />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&family=Syne:wght@600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+		<title>{fullTitle}</title>
+	</head>
+	<body>
+		<a class="skip" href="#main">Skip to content</a>
+		<Nav />
+		<main id="main">
+			<slot />
+		</main>
+		<footer class="foot">
+			<p>
+				<strong>{brand}</strong> — <code>{formula}</code> (vs <code>{formulaAgent}</code>). {categoryLine}.
+				Research harness as <code>escalane</code>.
+			</p>
+		</footer>
+	</body>
+</html>
+
+<style>
+	.foot {
+		max-width: var(--max);
+		margin: 4rem auto 2rem;
+		padding: 0 1.25rem 2rem;
+		color: var(--ink-muted);
+		font-size: 0.9rem;
+		border-top: 1px solid var(--line);
+		padding-top: 1.5rem;
+	}
+
+	.foot strong {
+		color: var(--ink);
+		font-weight: 500;
+	}
+
+	.foot code {
+		font-size: 0.85em;
+		color: var(--accent-dim);
+	}
+</style>

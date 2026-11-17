@@ -1,0 +1,31 @@
+---
+layout: ../../layouts/DocsLayout.astro
+title: Docs
+description: Operator documentation for Escalane (escalane).
+---
+
+# Docs
+
+**Escalane** is the product name for the **escalane** research harness. Category: Decide & Act for catalog-bound ops.
+
+## Composition (branding)
+
+| Shorthand | Meaning |
+| --- | --- |
+| **Agent = LLM + tools** | Model invents / proposes tool calls |
+| **Escalane = Decide + Act** | Model chooses; harness runs templates |
+| Expanded | **System One + catalog harness** |
+
+Agents *propose*. Escalane *selects* among authored playbooks (plus `escalate`). Multi-turn = repeated Decide→Act on a rail, not free tool generation.
+
+## Start here
+
+- [Quick start](./quick-start/) — install, mock decide/run, optional Ollama
+- [Catalogs](./catalogs/) — SysOps, Databricks DataOps, homelab packs
+- [Gates](./gates/) — A0–A3 and the write kill-switch
+- [Integrate](./integrate/) — alerts, MCP, portal, workflow, edge agent
+- [Claims](./claims/) — what you may cite (Phase-0 fence)
+
+## Thesis
+
+The model never invents commands. It answers typed decisions (`choice` / `noul` / `score`). Side effects come only from catalog templates after gates pass. Dry-run is the default.

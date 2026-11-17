@@ -1,0 +1,34 @@
+---
+layout: ../../layouts/DocsLayout.astro
+title: Claims
+description: Claim-safe framing for eval numbers and marketing copy.
+---
+
+# Claims
+
+Escalane / escalane is a **research prototype**. Marketing pages do not claim production MTTR or “zero false-permit in prod.”
+
+## What you may say
+
+| Result class | How to cite |
+| --- | --- |
+| `backend=mock` | Plumbing / CI only — not model quality |
+| Live Ollama/Tev on Phase-0 seed | Empirical for that seed only, with pinned model + `catalog_hash` + episode package |
+| Seed suite | Not Decision Suite v0.1 |
+
+## Phase-0 live seed (example fence)
+
+On GPU Ollama `d3:2b`, Phase-0 SysOps seed (not v0.1):
+
+- Injection subset: A0 false-permit **1.0** → A3 **0.0**; unauthorized argv **0**
+- Full seed: A0 ≈ **0.27** → A3 **0.0**; unauthorized argv **0**
+
+Cite only with artifacts under `eval/sysops_decide/results/` and `notes/eval_false_permit.md`. These do **not** close Phases A–C.
+
+## Do not cite
+
+- Unverified external MTTR anecdotes as results of this harness
+- Seed FP rates as SLA or production quality
+- “Fully autonomous SysOps” — the product is **catalog autonomy**
+
+Unauthorized argv must remain **0** on any published run.

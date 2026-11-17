@@ -1,0 +1,66 @@
+---
+/** Full-bleed abstract “catalog rail” — decisions select; harness acts. */
+---
+
+<svg class="rail" viewBox="0 0 1440 840" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+	<defs>
+		<linearGradient id="fog" x1="0" y1="0" x2="1" y2="1">
+			<stop offset="0%" stop-color="#0c1210" />
+			<stop offset="45%" stop-color="#143028" />
+			<stop offset="100%" stop-color="#0a1814" />
+		</linearGradient>
+		<linearGradient id="glow" x1="0" y1="0.5" x2="1" y2="0.5">
+			<stop offset="0%" stop-color="#c4f542" stop-opacity="0" />
+			<stop offset="50%" stop-color="#c4f542" stop-opacity="0.55" />
+			<stop offset="100%" stop-color="#c4f542" stop-opacity="0" />
+		</linearGradient>
+	</defs>
+	<rect width="1440" height="840" fill="url(#fog)" />
+	<!-- Catalog slots -->
+	<g class="slots" stroke="#c4f542" stroke-opacity="0.22" fill="none" stroke-width="1.5">
+		<rect x="180" y="220" width="160" height="72" rx="2" />
+		<rect x="380" y="220" width="160" height="72" rx="2" />
+		<rect x="580" y="220" width="160" height="72" rx="2" class="selected" />
+		<rect x="780" y="220" width="160" height="72" rx="2" />
+		<rect x="980" y="220" width="160" height="72" rx="2" />
+	</g>
+	<path
+		class="path"
+		d="M120 560 C 320 480, 420 640, 660 520 S 980 420, 1280 560"
+		fill="none"
+		stroke="url(#glow)"
+		stroke-width="3"
+		stroke-dasharray="8 10"
+	/>
+	<g fill="#c4f542" font-family="IBM Plex Mono, monospace" font-size="14">
+		<text x="200" y="262" fill="#9db5a8">restart_caddy</text>
+		<text x="400" y="262" fill="#9db5a8">prune_images</text>
+		<text x="600" y="262" fill="#c4f542">restart_svc</text>
+		<text x="800" y="262" fill="#9db5a8">clear_tmp</text>
+		<text x="1020" y="262" fill="#9db5a8">escalate</text>
+	</g>
+	<text x="120" y="700" fill="#9db5a8" font-family="IBM Plex Sans, sans-serif" font-size="18">
+		decide → gate → act
+	</text>
+</svg>
+
+<style>
+	.rail {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 0;
+		pointer-events: none;
+	}
+
+	.selected {
+		stroke-opacity: 0.9;
+		stroke-width: 2.5;
+		animation: rise 0.9s var(--ease) both;
+	}
+
+	.path {
+		animation: rail-sweep 2.4s var(--ease) both;
+	}
+</style>

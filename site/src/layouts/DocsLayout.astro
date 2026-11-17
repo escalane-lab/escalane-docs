@@ -1,0 +1,159 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { docsNav } from '../config';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description } = Astro.props;
+const path = Astro.url.pathname;
+const withBase = (href: string) =>
+	import.meta.env.BASE_URL.replace(/\/?$/, '/') + href.replace(/^\//, '');
+---
+
+<BaseLayout title={title} description={description}>
+	<div class="docs">
+		<aside class="side">
+			<p class="side-label">Docs</p>
+			<nav aria-label="Documentation">
+				{
+					docsNav.map((item) => (
+						<a
+							href={withBase(item.href)}
+							aria-current={path.includes(item.href.replace(/\/$/, '')) ? 'page' : undefined}
+						>
+							{item.label}
+						</a>
+					))
+				}
+			</nav>
+		</aside>
+		<article class="prose">
+			<slot />
+		</article>
+	</div>
+</BaseLayout>
+
+<style>
+	.docs {
+		display: grid;
+		grid-template-columns: 12rem 1fr;
+		gap: 2rem;
+		max-width: var(--max);
+		margin: 0 auto;
+		padding: 1.5rem 1.25rem 3rem;
+	}
+
+	.side-label {
+		font-family: var(--font-display);
+		font-size: 0.8rem;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--ink-muted);
+		margin: 0 0 0.75rem;
+	}
+
+	.side nav {
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+	}
+
+	.side a {
+		color: var(--ink-muted);
+		text-decoration: none;
+		font-size: 0.95rem;
+	}
+
+	.side a:hover,
+	.side a[aria-current='page'] {
+		color: var(--accent);
+	}
+
+	.prose {
+		min-width: 0;
+		max-width: 42rem;
+	}
+
+	.prose :global(h1) {
+		font-family: var(--font-display);
+		font-weight: 700;
+		font-size: clamp(1.75rem, 3vw, 2.25rem);
+		letter-spacing: -0.03em;
+		margin: 0 0 1rem;
+		animation: rise 0.6s var(--ease) both;
+	}
+
+	.prose :global(h2) {
+		font-family: var(--font-display);
+		font-weight: 600;
+		font-size: 1.25rem;
+		margin: 2rem 0 0.75rem;
+	}
+
+	.prose :global(p),
+	.prose :global(li) {
+		color: var(--ink-muted);
+	}
+
+	.prose :global(strong) {
+		color: var(--ink);
+		font-weight: 500;
+	}
+
+	.prose :global(ul) {
+		padding-left: 1.2rem;
+	}
+
+	.prose :global(pre) {
+		background: var(--bg-elev);
+		border: 1px solid var(--line);
+		padding: 1rem 1.1rem;
+		overflow-x: auto;
+		font-size: 0.85rem;
+		border-radius: 2px;
+	}
+
+	.prose :global(code) {
+		font-size: 0.9em;
+		color: var(--accent);
+	}
+
+	.prose :global(pre code) {
+		color: var(--ink);
+	}
+
+	.prose :global(table) {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: 0.92rem;
+		margin: 1rem 0;
+	}
+
+	.prose :global(th),
+	.prose :global(td) {
+		border-bottom: 1px solid var(--line);
+		padding: 0.5rem 0.4rem;
+		text-align: left;
+		color: var(--ink-muted);
+	}
+
+	.prose :global(th) {
+		color: var(--ink);
+		font-weight: 500;
+	}
+
+	@media (max-width: 720px) {
+		.docs {
+			grid-template-columns: 1fr;
+		}
+
+		.side nav {
+			flex-direction: row;
+			flex-wrap: wrap;
+			gap: 0.5rem 1rem;
+		}
+	}
+</style>

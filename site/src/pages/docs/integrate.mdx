@@ -1,0 +1,31 @@
+---
+layout: ../../layouts/DocsLayout.astro
+title: Integrate
+description: Five patterns to embed Escalane in a larger system.
+---
+
+# Integrate
+
+Shared contract: **structured state (or id to re-fetch) → System One → gates → template argv → episode**.
+
+## 1. Alertmanager / monitoring sidecar
+
+Webhook → hydrate metrics/locks/inventory → `escalane run --dry-run` → optional HITL/auto for low blast → attach episode to the ticket.
+
+## 2. MCP / agent tool
+
+Expose one high-level tool (`request_ops_action`), not shell tools. Harness ignores free-text as command authority; re-fetches host facts; returns gate decision + dry-run argv.
+
+## 3. Internal runbook API / IDP
+
+Portal buttons map to catalog ids. UI shows answers (choice, noul, blast) and requires confirm before act.
+
+## 4. Workflow / ITSM step
+
+Temporal, Airflow, Ansible AAP, or ServiceNow activity calls Escalane for the mutate hop. Orchestrator sequences; harness owns *whether* and *which* template runs.
+
+## 5. Edge agent
+
+Central brain decides; signed plan (`catalog_hash` + playbook id + bound params) executes on the node. Useful for multi-host homelab without giving the LLM SSH.
+
+Upstream systems supply **evidence**. They do not pass free-form commands as truth.

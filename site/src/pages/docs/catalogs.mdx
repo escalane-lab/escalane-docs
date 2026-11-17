@@ -1,0 +1,26 @@
+---
+layout: ../../layouts/DocsLayout.astro
+title: Catalogs
+description: Configured playbook packs for SysOps, DataOps, and homelab.
+---
+
+# Catalogs
+
+The catalog **is** the allowlist. Each playbook has criteria (for the decision model), params schema, optional prechecks/locks, and an executor template. Always include `escalate`.
+
+| Pack | Path | Examples |
+| --- | --- | --- |
+| SysOps (Phase-0 seed) | `datasets/sysops_decide/` | PHP-FPM, nginx, disk, redis, … |
+| DataOps / Databricks | `datasets/dataops_decide/` | `databricks jobs run-now`, clusters, warehouses |
+| Homelab | `datasets/homelab_decide/` | Docker/Compose, Caddy, Pi-hole, Samba, sshd reload |
+
+SysOps eval episodes pin `catalog_hash` of the SysOps YAML — keep DataOps/homelab as **separate** catalogs so that hash stays frozen.
+
+## Executor kinds
+
+- `systemd` — `systemctl <action> <unit>`
+- `cli` — `binary` + `args_template` with `{param}` placeholders (Docker, Databricks, …)
+- `script` — `/bin/sh scripts/…` plus bound `--key=value`
+- `none` — escalate / no side effect
+
+Params bind from `inventory` and alert `labels` only — never from log free text or model strings.

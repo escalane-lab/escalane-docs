@@ -1,0 +1,92 @@
+---
+import { brand, githubUrl, nav } from '../config';
+
+const path = Astro.url.pathname;
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+
+function hrefFor(itemHref: string) {
+	return base + itemHref.replace(/^\//, '');
+}
+
+function isActive(itemHref: string) {
+	const clean = path.replace(/\/+$/, '') || '/';
+	const target = (base + itemHref.replace(/^\//, '')).replace(/\/+$/, '') || '/';
+	if (itemHref === '/') {
+		return clean === target || clean.endsWith('/escalane-docs');
+	}
+	return clean === target || clean.startsWith(target + '/');
+}
+---
+
+<header class="nav">
+	<a class="brand" href={base}>{brand}</a>
+	<nav aria-label="Primary">
+		{
+			nav.map((item) => (
+				<a href={hrefFor(item.href)} aria-current={isActive(item.href) ? 'page' : undefined}>
+					{item.label}
+				</a>
+			))
+		}
+		<a class="gh" href={githubUrl} rel="noopener noreferrer">GitHub</a>
+	</nav>
+</header>
+
+<style>
+	.nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		padding: 1rem 1.25rem;
+		max-width: var(--max);
+		margin: 0 auto;
+		position: relative;
+		z-index: 5;
+	}
+
+	.brand {
+		font-family: var(--font-display);
+		font-weight: 700;
+		font-size: 1.15rem;
+		letter-spacing: -0.02em;
+		color: var(--ink);
+		text-decoration: none;
+	}
+
+	.brand:hover {
+		color: var(--accent);
+	}
+
+	nav {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.35rem 1rem;
+		align-items: center;
+		font-size: 0.92rem;
+	}
+
+	nav a {
+		color: var(--ink-muted);
+		text-decoration: none;
+	}
+
+	nav a:hover,
+	nav a[aria-current='page'] {
+		color: var(--ink);
+	}
+
+	.gh {
+		color: var(--accent) !important;
+		border: 1px solid var(--line);
+		padding: 0.25rem 0.65rem;
+		border-radius: 2px;
+	}
+
+	@media (max-width: 560px) {
+		.nav {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+	}
+</style>

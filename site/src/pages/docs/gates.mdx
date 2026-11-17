@@ -1,0 +1,31 @@
+---
+layout: ../../layouts/DocsLayout.astro
+title: Gates
+description: Ordered A0–A3 policy gates and write controls.
+---
+
+# Gates
+
+Gates run after System One answers. **First failure wins.**
+
+| Config | Behavior |
+| --- | --- |
+| **A0** | Parse + catalog membership (+ escalate). Choice-only — useful as ablation, not a product default. |
+| **A1** | A0 + noul veto |
+| **A2** | A1 + blast / score bands |
+| **A3** | A2 + per-label precision HITL (needs fitted precision table) |
+
+Platform policy defaults: writes off, dry-run only; mutating allow is promoted to dry-run in research mode.
+
+## Write kill-switch
+
+Dual gate for real side effects:
+
+1. CLI `--allow-writes`
+2. Env `ALLOW_WRITE_OPERATIONS=true`
+
+Without both, the executor plans argv but does not call the host.
+
+## Why A0 is not enough
+
+On twin cases (same symptoms, migrate/backfill lock on), A0 can dry-run a mutate while A1+ deny on low noul or precheck failure. Ship A3 (or at least A1) for prompt-driven Linux/homelab use.
