@@ -40,38 +40,39 @@ Docs site: [escalane-lab.github.io/escalane-docs](https://escalane-lab.github.io
 - **A2** — is the blast radius acceptable?
 - **A3** — is fitted per-label precision good enough? If not → **human review** (HITL)
 
-**A3** is the strictest research posture. On this run it still asked for a human, because fitted label precision was conservative — even though the model picked a valid catalog playbook.
+**A3** is the strictest research posture. On this **live** Ollama run with System One `d3:4b`, it still asked for a human, because fitted label precision was conservative — even though the model picked a valid catalog playbook.
 
-Offline decide (no host mutation):
+Live decide (no host mutation; fail-closed if the backend is down):
 
 ```bash
 uv sync
 uv run escalane decide \
-  --backend mock \
+  --backend ollama \
+  --model d3:4b \
+  --require-live \
   --state src/escalane/examples/incidents/php_502.json \
   --catalog datasets/sysops_decide/catalog.yaml \
   --gate-config A3
 ```
 
-Trimmed output from that exact command on the seed PHP 502 incident:
+Trimmed output from that exact live command on the seed PHP 502 incident:
 
-![escalane decide mock A3 terminal](https://escalane-lab.github.io/escalane-docs/demo/demo-decide-terminal.png)
+![escalane decide live Ollama d3:4b A3 terminal](https://escalane-lab.github.io/escalane-docs/demo/demo-decide-terminal.png)
 
 ```json
 {
-  "model": "mock",
+  "model": "d3:4b",
+  "backend": "ollama",
   "playbook": "restart_php_fpm",
-  "noul": 0.95,
-  "blast_score": 0.3,
+  "noul": 0.9878,
+  "blast_score": 0.9822,
   "gate_decision": "hitl",
   "gate_reason": "label_precision",
   "dry_run_only": true
 }
 ```
 
-Read that as: catalog playbook selected, dry-run only, no shell args invented by the model, and A3 routed to human review instead of execute.
-
-When a live backend is up (e.g. Ollama), the same path works with `--backend ollama` and `--require-live` if you want fail-closed instead of pretending.
+Read that as: live System One answers, catalog playbook selected, dry-run only, no shell args invented by the model, and A3 routed to human review instead of execute.
 
 <!-- Upload docs/blog/assets/escalane-dev-cover.jpg as the DEV cover image.
      Optional second media: paste a terminal screenshot of the command above. -->

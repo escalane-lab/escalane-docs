@@ -1,0 +1,15 @@
+{
+  "model": "d3:4b",
+  "backend": "ollama",
+  "require_live": true,
+  "playbook": "restart_php_fpm",
+  "noul": 0.9878,
+  "playbook_confidence": 0.9949,
+  "blast_score": 0.9822,
+  "blast_confidence": 0.3068,
+  "gate_decision": "hitl",
+  "gate_reason": "label_precision",
+  "gate_config": "A3",
+  "dry_run_only": true,
+  "incident": "php_502"
+}

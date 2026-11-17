@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="958" viewBox="0 0 980 958">
+  <rect width="100%" height="100%" fill="#16181c"/>
+  <rect width="100%" height="44" fill="#24272e"/>
+  <circle cx="24" cy="22" r="6" fill="#ef4444"/>
+  <circle cx="42" cy="22" r="6" fill="#eab308"/>
+  <circle cx="60" cy="22" r="6" fill="#22c55e"/>
+  <text x="90" y="27" fill="#94a3b8" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13">escalane decide — live Ollama / d3:4b / A3 / php_502</text>
+  <text x="28" y="72" fill="#5eead4" font-family="ui-monospace, DejaVu Sans Mono, monospace" font-size="15">$ uv run escalane decide \</text>
+  <text x="28" y="98" fill="#94a3b8" font-family="ui-monospace, DejaVu Sans Mono, monospace" font-size="15">    --backend ollama \</text>
+  <text x="28" y="124" fill="#94a3b8" font-family="ui-monospace, DejaVu Sans Mono, monospace" font-size="15">    --model d3:4b \</text>
+  <text x="28" y="150" fill="#94a3b8" font-family="ui-monospace, DejaVu Sans Mono, monospace" font-size="15">    --require-live \</text>
+  <text x="28" y="176" fill="#94a3b8" font-family="ui-monospace, DejaVu Sans Mono, monospace" font-size="15">    --state src/escalane/examples/incidents/php_502.json \</text>
+  <text x="28" y="202" fill="#94a3b8" font-family="ui-monospace, DejaVu Sans Mono, monospace" font-size="15">    --catalog datasets/sysops_decide/catalog.yaml \</text>
+  <text x="28" y="228" fill="#94a3b8" font-family="ui-monospace, DejaVu Sans Mono, monospace" font-size="15">    --gate-config A3</text>
+  <text x="28" y="280" fill="#e2e8f0" font-family="ui-monospace, DejaVu Sans Mono, monospace" font-size="15">{</text>
+  <text x="28" y="306" fill="#e2e8f0" font-family="ui-monospace, DejaVu Sans Mono, monospace" font-size="15">  "model": "d3:4b",</text>
+  <text x="28" y="332" fill="#e2e8f0" font-family="ui-monospace, DejaVu Sans Mono, monospace" font-size="15">  "catalog_hash": "sha256:88d422f6580ac74ba…",</text>
+  <text x="28" y="358" fill="#e2e8f0" font-family="ui-monospace, DejaVu Sans Mono, monospace" font-size="15">  "answers": {</text>
+  <text x="28" y="384" fill="#e2e8f0" font-family="ui-monospace, DejaVu Sans Mono, monospace" font-size="15">    "playbook": {</text>
+  <text x="28" y="410" fill="#e2e8f0" font-family="ui-monospace, DejaVu Sans Mono, monospace" font-size="15">      "type": "choice",</text>
+  <text x="28" y="436" fill="#5eead4" font-family="ui-monospace, DejaVu Sans Mono, monospace" font-size="15">      "choice": "restart_php_fpm",</text>
+  <text x="28" y="462" fill="#e2e8f0" font-family="ui-monospace, DejaVu Sans Mono, monospace" font-size="15">      "confidence": 0.9949</text>
+  <text x="28" y="488" fill="#e2e8f0" font-family="ui-monospace, DejaVu Sans Mono, monospace" font-size="15">    },</text>
+  <text x="28" y="514" fill="#e2e8f0" font-family="ui-monospace, DejaVu Sans Mono, monospace" font-size="15">    "safe_to_act": {</text>
+  <text x="28" y="540" fill="#e2e8f0" font-family="ui-monospace, DejaVu Sans Mono, monospace" font-size="15">      "type": "noul",</text>
+  <text x="28" y="566" fill="#e2e8f0" font-family="ui-monospace, DejaVu Sans Mono, monospace" font-size="15">      "noul": 0.9878</text>
+  <text x="28" y="592" fill="#e2e8f0" font-family="ui-monospace, DejaVu Sans Mono, monospace" font-size="15">    },</text>
+  <text x="28" y="618" fill="#e2e8f0" font-family="ui-monospace, DejaVu Sans Mono, monospace" font-size="15">    "blast": {</text>
+  <text x="28" y="644" fill="#e2e8f0" font-family="ui-monospace, DejaVu Sans Mono, monospace" font-size="15">      "type": "score",</text>
+  <text x="28" y="670" fill="#e2e8f0" font-family="ui-monospace, DejaVu Sans Mono, monospace" font-size="15">      "score": 0.9822,</text>
+  <text x="28" y="696" fill="#e2e8f0" font-family="ui-monospace, DejaVu Sans Mono, monospace" font-size="15">      "confidence": 0.3068</text>
+  <text x="28" y="722" fill="#e2e8f0" font-family="ui-monospace, DejaVu Sans Mono, monospace" font-size="15">    }</text>
+  <text x="28" y="748" fill="#e2e8f0" font-family="ui-monospace, DejaVu Sans Mono, monospace" font-size="15">  },</text>
+  <text x="28" y="774" fill="#e2e8f0" font-family="ui-monospace, DejaVu Sans Mono, monospace" font-size="15">  "gate": {</text>
+  <text x="28" y="800" fill="#fbbf24" font-family="ui-monospace, DejaVu Sans Mono, monospace" font-size="15">    "decision": "hitl",</text>
+  <text x="28" y="826" fill="#e2e8f0" font-family="ui-monospace, DejaVu Sans Mono, monospace" font-size="15">    "reason": "label_precision",</text>
+  <text x="28" y="852" fill="#5eead4" font-family="ui-monospace, DejaVu Sans Mono, monospace" font-size="15">    "playbook_id": "restart_php_fpm"</text>
+  <text x="28" y="878" fill="#e2e8f0" font-family="ui-monospace, DejaVu Sans Mono, monospace" font-size="15">  }</text>
+  <text x="28" y="904" fill="#e2e8f0" font-family="ui-monospace, DejaVu Sans Mono, monospace" font-size="15">}</text>
+</svg>
