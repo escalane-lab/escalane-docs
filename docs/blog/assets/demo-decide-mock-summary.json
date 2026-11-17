@@ -1,0 +1,9 @@
+{
+  "model": "mock",
+  "playbook": "restart_php_fpm",
+  "noul": 0.95,
+  "blast_score": 0.3,
+  "gate_decision": "hitl",
+  "gate_reason": "label_precision",
+  "dry_run_only": true
+}
